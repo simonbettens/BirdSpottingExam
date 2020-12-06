@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 	        http.httpBasic();
 	        http
 	                .authorizeRequests()
+	                .antMatchers("/birds-spotted/*").permitAll()
 	                .antMatchers("/*").hasRole("USER");
 	    }
 }
