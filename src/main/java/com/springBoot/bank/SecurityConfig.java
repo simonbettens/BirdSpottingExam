@@ -12,33 +12,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 
-	//DelegatingPasswordEncoder 
-		@Override
-	    protected void configure(AuthenticationManagerBuilder auth) 
-	      throws Exception {
-	        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	        auth.inMemoryAuthentication()
-	          .withUser("user").password(encoder.encode("user")).roles("USER").and()
-	          .withUser("admin").password(encoder.encode("admin")).roles("USER","ADMIN");
-	    }
-	    
 		//NoOpPasswordEncoder
-	    /*@Override
+	    @Override
 	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	        auth
-	                // enable in memory based authentication with a user named
-	                // "user" and "admin"
 	                .inMemoryAuthentication()
-	                .withUser("user").password("{noop}user").roles("USER").and()
-	                .withUser("admin").password("{noop}admin").roles("USER", "ADMIN");
-	    }*/
+	                .withUser("spotter").password("{noop}RedDuck007").roles("SPOTTER").and()
+	                .withUser("admin").password("{noop}eagle").roles("SPOTTER", "ADMIN");
+	    }
 	    
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
-	        http.httpBasic();
+	        
 	        http
 	                .authorizeRequests()
-	                .antMatchers("/birds-spotted/*").permitAll()
-	                .antMatchers("/*").hasRole("USER");
+	                .antMatchers("/403*").permitAll()
+	                .antMatchers("/birds-spotted/**").permitAll()
+	                .antMatchers("/**/**/newbirdspotting").hasRole("ADMIN")
+	                .antMatchers("/**").hasRole("SPOTTER");
+	        
+	        http.formLogin().defaultSuccessUrl("/birdspotting", true).loginPage("/login").permitAll()
+	        .usernameParameter("username").passwordParameter("password").and()
+	        .exceptionHandling().accessDeniedPage("/403").and().csrf();
+	        
+	        http.logout().permitAll();
 	    }
 }

@@ -6,6 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import service.SpottedBirdService;
@@ -19,6 +20,10 @@ public class BirdSpottingExamenWebappsApplication implements WebMvcConfigurer {
 		SpringApplication.run(BirdSpottingExamenWebappsApplication.class, args);
 	}
 	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/403").setViewName("403");
+	}
 	
 	@Bean
     public SpottedBirdService spottedBirdService() {

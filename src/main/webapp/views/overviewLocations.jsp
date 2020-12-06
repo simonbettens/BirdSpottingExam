@@ -32,6 +32,9 @@
         </c:forEach>
     </table>
     <br>
-    <button>Stop spotting</button>
+    <form action='logout' method='post'>
+		<input type="submit" value="Stop spotting" /> 
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
 </body>
 </html>
