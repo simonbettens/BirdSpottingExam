@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h1>Overview of spotted birds in ${birdSpotLocation.name} </h1>
-	<p><a href="/birdspotting/newbirdspotting">New spotting</a> - <a href="/birdspotting">Spotting locations overview</a></p>
+	<p><a href="/birdspotting/${birdSpotLocation.name}/newbirdspotting">New spotting</a> - <a href="/birdspotting">Spotting locations overview</a></p>
 	<table>
             <tr>
                 <th>Index</th>

@@ -1,10 +1,18 @@
 package domain;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class BirdSpecie {
+	@NotEmpty
 	private String name;
-	
+	@NotNull
+	@Min(value = 1250, message="{validation.birdspecie.year}")
     private Integer yearOfDiscovery;
-	
+	@NotEmpty
+	@Pattern(regexp = "[A-Z]{1,2}[0-9]{3}",message="{validation.birdspecie.code}") //[A-Z]{1,2}\d{3}
     private String code;
 		
 	public BirdSpecie(String name, Integer yearOfDiscovery, String code) {
