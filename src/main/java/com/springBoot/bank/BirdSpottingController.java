@@ -62,8 +62,6 @@ public class BirdSpottingController {
 		validator.validate(birdSpecie, bindingResult);
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("message","Please review entered data...");
-			model.addAttribute("birdSpecie", birdSpecie);
-			model.addAttribute("name", name);
 			return "createSpecie";
 		}
 		BirdSpotLocation bsl = spottedBirdService.findByName(name).get();
