@@ -65,7 +65,7 @@ public class BirdSpottingController {
 			return "createSpecie";
 		}
 		BirdSpotLocation bsl = spottedBirdService.findByName(name).get();
-        bsl.newBirdSpot(birdSpecie);
+        bsl.increaseBirdSpot(birdSpecie);
         
 		return "redirect:/birdspotting/"+name;
 	}
