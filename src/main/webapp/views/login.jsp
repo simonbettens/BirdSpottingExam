@@ -7,8 +7,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Login </title>
-	<spring:url value="/css/style.css" var="urlCss"/>
-       <link rel="stylesheet" href="${urlCss}" type="text/css" />
+<spring:url value="/css/style.css" var="urlCss"/>
+<link rel="stylesheet" href="${urlCss}" type="text/css" />
 </head>
 	<body onload='document.loginForm.username.focus();'>
         <h1>Bird Spotting Login</h1>
